@@ -1741,13 +1741,13 @@ section,
   display: flex;
   justify-content: center;
   align-items: center;
-  height: 300px; /* Set a uniform height */
+  height: 300px; 
 }
 
 .chefs .team-member .member-img img {
   width: auto;
-  height: 100%; /* Ensure the image takes the full height */
-  object-fit: contain; /* Keep aspect ratio and avoid cropping */
+  height: 100%; 
+  object-fit: contain; 
 }
 
 .chefs .team-member .member-info {
@@ -1777,17 +1777,17 @@ section,
 }
 
 .swiper-button-next, .swiper-button-prev {
-  color: #fff; /* Change the color to match your theme */
-  width: 50px; /* Set a width for the arrows */
-  height: 50px; /* Set a height for the arrows */
+  color: #fff; 
+  width: 50px; 
+  height: 50px;
 }
 
 .swiper-button-next {
-  right: 10px; /* Adjust position */
+  right: 10px;
 }
 
 .swiper-button-prev {
-  left: 10px; /* Adjust position */
+  left: 10px; 
 }
 
 .fixed-size {
