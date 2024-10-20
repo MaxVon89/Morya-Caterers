@@ -49,48 +49,67 @@
   </header>
 
   <main class="main">
+
     <section id="events" class="events section">
       <div class="container-fluid" data-aos="fade-up" data-aos-delay="100">
-        <div class="swiper init-swiper">
-          <div class="swiper-wrapper">
-            <div class="swiper-slide event-item d-flex flex-column justify-content-end" style="background-image: url(assets/img/events-1.jpg)">
-              <h3>Custom Parties</h3>
-              <div class="price align-self-start">Starting from 150/- per person</div>
-            </div>
-            <div class="swiper-slide event-item d-flex flex-column justify-content-end" style="background-image: url(assets/img/events-2.jpg)">
-              <h3>Private Parties</h3>
-              <div class="price align-self-start">Starting from 250/- per person</div>
-            </div>
-            <div class="swiper-slide event-item d-flex flex-column justify-content-end" style="background-image: url(assets/img/events-3.jpg)">
-              <h3>Birthday Parties</h3>
-              <div class="price align-self-start">Starting from 150/- per person</div>
-            </div>
-            <div class="swiper-slide event-item d-flex flex-column justify-content-end" style="background-image: url(assets/img/events-4.jpg)">
-              <h3>Wedding Parties</h3>
-              <div class="price align-self-start">Packages start from 20,000/-</div>
-            </div>
+        <div class="row">
+          <div class="col-lg-3 event-item d-flex flex-column justify-content-end" style="background-image: url(assets/img/events-1.jpg)">
+            <h3>Custom Parties</h3>
+            <div class="price align-self-start">Starting from 150/- per person</div>
+            <button class="read-more" data-event-index="0">Read More</button>
           </div>
-          <div class="swiper-pagination"></div>
+          <div class="col-lg-3 event-item d-flex flex-column justify-content-end" style="background-image: url(assets/img/events-2.jpg)">
+            <h3>Private Parties</h3>
+            <div class="price align-self-start">Starting from 250/- per person</div>
+            <button class="read-more" data-event-index="1">Read More</button>
+          </div>
+          <div class="col-lg-3 event-item d-flex flex-column justify-content-end" style="background-image: url(assets/img/events-3.jpg)">
+            <h3>Birthday Parties</h3>
+            <div class="price align-self-start">Starting from 150/- per person</div>
+            <button class="read-more" data-event-index="2">Read More</button>
+          </div>
+          <div class="col-lg-3 event-item d-flex flex-column justify-content-end" style="background-image: url(assets/img/events-4.jpg)">
+            <h3>Wedding Parties</h3>
+            <div class="price align-self-start">Packages start from 20,000/-</div>
+            <button class="read-more" data-event-index="3">Read More</button>
+          </div>
         </div>
       </div>
     </section>
 
-    <section id="gallery" class="gallery section light-background">
-      <div class="container section-title" data-aos="fade-up">
-        <h2>Gallery</h2>
-        <p><span>Check</span> <span class="description-title">Our Gallery</span></p>
-      </div>
-    
-      <div class="container" data-aos="fade-up" data-aos-delay="100">
-        <div class="swiper init-swiper">
-          <div class="swiper-wrapper align-items-center" id="dishGallery">
-          </div>
-          <div class="swiper-button-next"></div>
-          <div class="swiper-button-prev"></div>
-          <div class="swiper-pagination"></div>
+    <section id="event-details" class="event-details section" style="display:none;">
+      <div id="event-modal" class="modal" style="display:none;">
+        <div class="modal-content">
+          <span class="close">&times;</span>
+          <h2 id="modal-event-title"></h2>
+          <p id="modal-event-description"></p>
+          <p id="modal-event-price"></p>
+          <!-- The image and menu will be added dynamically via JavaScript -->
         </div>
       </div>
-    </section>    
+    </section>
+    
+
+    
+<section id="gallery" class="gallery section light-background">
+  <div class="container section-title" data-aos="fade-up">
+    <h2>Gallery</h2>
+    <p><span>Check</span> <span class="description-title">Our Gallery</span></p>
+  </div>
+
+  <div class="container" data-aos="fade-up" data-aos-delay="100">
+    <div class="swiper-container">
+      <div class="swiper-wrapper" id="dishGallery"></div>
+
+      <!-- Arrows for navigation (aligned and black) -->
+      <div class="swiper-button-next" style="color:black;"></div>
+      <div class="swiper-button-prev" style="color:black;"></div>
+    </div>
+  </div>
+</section>
+
+    
+      
   </main>
 
   <footer id="footer" class="footer dark-background">

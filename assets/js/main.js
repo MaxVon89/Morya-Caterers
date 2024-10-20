@@ -1,7 +1,6 @@
 (function () {
   "use strict";
 
-  // Toggle scrolled class on body
   function toggleScrolled() {
     const selectBody = document.querySelector('body');
     const selectHeader = document.querySelector('#header');
@@ -14,14 +13,15 @@
   document.addEventListener('scroll', toggleScrolled);
   window.addEventListener('load', toggleScrolled);
 
-  // Mobile navigation toggle
   const mobileNavToggleBtn = document.querySelector('.mobile-nav-toggle');
-  function mobileNavToggle() {
-    document.querySelector('body').classList.toggle('mobile-nav-active');
-    mobileNavToggleBtn.classList.toggle('bi-list');
-    mobileNavToggleBtn.classList.toggle('bi-x');
+  if (mobileNavToggleBtn) {
+    function mobileNavToggle() {
+      document.querySelector('body').classList.toggle('mobile-nav-active');
+      mobileNavToggleBtn.classList.toggle('bi-list');
+      mobileNavToggleBtn.classList.toggle('bi-x');
+    }
+    mobileNavToggleBtn.addEventListener('click', mobileNavToggle);
   }
-  mobileNavToggleBtn.addEventListener('click', mobileNavToggle);
 
   document.querySelectorAll('#navmenu a').forEach(navmenu => {
     navmenu.addEventListener('click', () => {
@@ -31,7 +31,6 @@
     });
   });
 
-  // Dropdown toggling
   document.querySelectorAll('.navmenu .toggle-dropdown').forEach(navmenu => {
     navmenu.addEventListener('click', function (e) {
       e.preventDefault();
@@ -41,7 +40,6 @@
     });
   });
 
-  // Preloader removal
   const preloader = document.querySelector('#preloader');
   if (preloader) {
     window.addEventListener('load', () => {
@@ -49,22 +47,22 @@
     });
   }
 
-  // Scroll to top functionality
-  let scrollTop = document.querySelector('.scroll-top');
+  const scrollTop = document.querySelector('.scroll-top');
   function toggleScrollTop() {
     if (scrollTop) {
       window.scrollY > 100 ? scrollTop.classList.add('active') : scrollTop.classList.remove('active');
     }
   }
-  scrollTop.addEventListener('click', (e) => {
-    e.preventDefault();
-    window.scrollTo({ top: 0, behavior: 'smooth' });
-  });
+  if (scrollTop) {
+    scrollTop.addEventListener('click', (e) => {
+      e.preventDefault();
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    });
+  }
 
   window.addEventListener('load', toggleScrollTop);
   document.addEventListener('scroll', toggleScrollTop);
 
-  // AOS Initialization
   function aosInit() {
     AOS.init({
       duration: 600,
@@ -75,109 +73,166 @@
   }
   window.addEventListener('load', aosInit);
 
-  // GLightbox Initialization
   const glightbox = GLightbox({
     selector: '.glightbox'
   });
 
-  // PureCounter Initialization
   new PureCounter();
 
-  // Swiper initialization
-  let swiper;
-
-  // Fetch and setup dishes
   document.addEventListener("DOMContentLoaded", function () {
     const dishGallery = document.getElementById('dishGallery');
     console.log("Fetching dishes...");
-
+  
+    // Fetch dishes JSON
     fetch('assets/json/dishes.json')
-      .then(response => {
-        console.log("Response received:", response);
-        if (!response.ok) {
-          throw new Error('Network response was not ok: ' + response.statusText);
-        }
-        return response.json();
-      })
+      .then(response => response.json())
       .then(dishes => {
-        console.log("Dishes loaded:", dishes);
         const middleIndex = Math.floor(dishes.length / 2);
-        dishGallery.innerHTML = ''; // Clear existing slides
-
-        // Create slides
-        dishes.forEach((dish) => {
+        dishGallery.innerHTML = ''; // Clear existing content
+  
+        dishes.forEach((dish, index) => {
           const slide = document.createElement('div');
           slide.classList.add('swiper-slide');
-
+          if (index === middleIndex) {
+            slide.classList.add('active-slide'); // Set middle image as active
+          }
+  
           const link = document.createElement('a');
           link.classList.add('glightbox');
           link.setAttribute('data-gallery', 'images-gallery');
           link.href = dish.src;
-
+  
           const img = document.createElement('img');
           img.src = dish.src;
           img.alt = dish.alt;
-          img.classList.add('img-fluid', 'fixed-size'); // Add the fixed-size class
-
+          img.classList.add('img-fluid', 'fixed-size'); // Set fixed size
+  
           link.appendChild(img);
           slide.appendChild(link);
           dishGallery.appendChild(slide);
         });
-
-        // Initialize Swiper after adding slides
-        swiper = new Swiper('.init-swiper', {
-          loop: dishes.length > 3, // Enable loop if enough slides
-          speed: 600,
+  
+        // Initialize Swiper with navigation arrows
+        const swiper = new Swiper('.swiper-container', {
           navigation: {
             nextEl: '.swiper-button-next',
             prevEl: '.swiper-button-prev',
           },
-          pagination: {
-            el: '.swiper-pagination',
-            type: 'bullets',
-            clickable: true,
-          },
-          breakpoints: {
-            320: {
-              slidesPerView: 1,
-              spaceBetween: 0,
-            },
-            768: {
-              slidesPerView: 3,
-              spaceBetween: 20,
-            },
-            1200: {
-              slidesPerView: 5,
-              spaceBetween: 20,
-            }
-          }
+          loop: true, // Enable looping through slides
         });
+      })
+      .catch(error => console.error('Error loading dishes:', error));
+  
+    // Event Section Clickable Images with JSON info
+    const eventItems = document.querySelectorAll('.event-item');
+    const eventDetailsSection = document.getElementById('event-details');
+    const eventTitle = document.getElementById('event-title');
+    const eventDescription = document.getElementById('event-description');
+    const eventPrice = document.getElementById('event-price');
+  
+    fetch('assets/json/events.json')
+      .then(response => response.json())
+      .then(events => {
+        eventItems.forEach((item, index) => {
+          item.addEventListener('click', () => {
+            const event = events[index];
+            eventTitle.innerText = event.title;
+            eventDescription.innerText = event.description;
+            eventPrice.innerText = event.price;
+            eventDetailsSection.style.display = 'block'; // Show event details section
+            eventDetailsSection.scrollIntoView({ behavior: 'smooth' }); // Scroll to details section
+          });
+        });
+      })
+      .catch(error => console.error('Error loading event data:', error));
+  });
+  document.addEventListener('DOMContentLoaded', function () {
+    // Fetch JSON data
+    fetch('assets/json/events.json')
+        .then(response => response.json())
+        .then(eventsData => {
+            const readMoreButtons = document.querySelectorAll('.read-more');
+            const modal = document.getElementById('event-modal');
+            const modalTitle = document.getElementById('modal-event-title');
+            const modalDescription = document.getElementById('modal-event-description');
+            const modalPrice = document.getElementById('modal-event-price');
+            const modalImage = document.createElement('img'); // Create image element
+            const modalMenu = document.createElement('p'); // Create menu element
 
-        // Ensure that loop mode works correctly
-        if (dishes.length > 3) {
-          // Check if swiper is initialized before calling slideTo
-          if (swiper) {
-            swiper.slideTo(middleIndex + 1, 0); // Use +1 for loop adjustment
-          } else {
-            console.error('Swiper instance not initialized');
-          }
-        } else {
-          if (swiper) {
-            swiper.slideTo(middleIndex, 0); // Adjust for non-looping
-          } else {
-            console.error('Swiper instance not initialized');
-          }
-        }
+            // Append the image and menu elements to the modal content
+            document.querySelector('.modal-content').appendChild(modalImage);
+            document.querySelector('.modal-content').appendChild(modalMenu);
 
-        // Log current slide index
-        swiper.on('slideChange', function () {
-          console.log('Current slide index: ', swiper.realIndex);
+            // Close modal functionality
+            document.querySelector('.close').onclick = function () {
+                modal.style.display = 'none';  // Hide modal
+            };
+
+            // Set up Read More button click event
+            readMoreButtons.forEach((button, index) => {
+                button.addEventListener('click', function () {
+                    const event = eventsData[index];  // Get the corresponding event from JSON
+
+                    // Set modal content based on event data
+                    modalTitle.innerText = event.title;
+                    modalDescription.innerText = event.description;
+                    modalPrice.innerText = event.price;
+                    modalImage.src = event.image; // Set image source
+                    modalImage.alt = event.title; // Set image alt text
+                    modalMenu.innerText = `Menu: ${event.menu}`; // Set menu text
+
+                    modal.style.display = 'block';  // Show modal
+                });
+            });
+        })
+        .catch(error => console.error('Error fetching events data:', error));
+});
+
+  
+  // Gallery Swiper
+  document.addEventListener("DOMContentLoaded", function () {
+    const dishGallery = document.getElementById('dishGallery');
+  
+    fetch('assets/json/dishes.json')
+      .then(response => response.json())
+      .then(dishes => {
+        const middleIndex = Math.floor(dishes.length / 2);
+        dishGallery.innerHTML = ''; 
+  
+        dishes.forEach((dish, index) => {
+          const slide = document.createElement('div');
+          slide.classList.add('swiper-slide');
+          if (index === middleIndex) {
+            slide.classList.add('active-slide'); 
+          }
+  
+          const link = document.createElement('a');
+          link.classList.add('glightbox');
+          link.setAttribute('data-gallery', 'images-gallery');
+          link.href = dish.src;
+  
+          const img = document.createElement('img');
+          img.src = dish.src;
+          img.alt = dish.alt;
+          img.classList.add('img-fluid', 'fixed-size'); 
+  
+          link.appendChild(img);
+          slide.appendChild(link);
+          dishGallery.appendChild(slide);
+        });
+  
+        const swiper = new Swiper('.swiper-container', {
+          navigation: {
+            nextEl: '.swiper-button-next',
+            prevEl: '.swiper-button-prev',
+          },
+          loop: true, 
         });
       })
       .catch(error => console.error('Error loading dishes:', error));
   });
   
-  // Scrollspy for navigation menu
+
   let navmenulinks = document.querySelectorAll('.navmenu a');
   function navmenuScrollspy() {
     navmenulinks.forEach(navmenulink => {
@@ -196,7 +251,6 @@
   window.addEventListener('load', navmenuScrollspy);
   document.addEventListener('scroll', navmenuScrollspy);
 
-  // Set equal heights for team member cards
   window.addEventListener('load', function () {
     const teamMembers = document.querySelectorAll('.chefs .team-member');
     let maxHeight = 0;
@@ -212,4 +266,5 @@
       member.style.height = maxHeight + 'px';
     });
   });
+
 })();
