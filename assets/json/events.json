@@ -1,27 +1,27 @@
 [
     {
-      "title": "Custom Parties",
+      "title": "Birthday Parties",
       "description": "We offer custom parties for any occasion, tailored to your needs.",
       "price": "Starting from 150/- per person",
       "image": "assets/img/events/event2.jpg",
       "menu": "Custom menu options include appetizers, main courses, and desserts."
     },
     {
-      "title": "Private Parties",
+      "title": "Corporate Events",
       "description": "Exclusive private parties with premium services.",
       "price": "Starting from 250/- per person",
       "image": "assets/img/events/event2.jpg",
       "menu": "Premium menu includes gourmet dishes, fine wine selections, and custom desserts."
     },
     {
-      "title": "Birthday Parties",
+      "title": "Traditional Events",
       "description": "Celebrate birthdays in style with custom themes and gourmet menus.",
       "price": "Starting from 150/- per person",
       "image": "assets/img/events/event2.jpg",
       "menu": "Birthday menu includes themed cakes, snacks, and special drinks."
     },
     {
-      "title": "Wedding Parties",
+      "title": "Buffets",
       "description": "Our wedding packages are designed to make your big day unforgettable.",
       "price": "Packages start from 20,000/-",
       "image": "assets/img/events/event2.jpg",
