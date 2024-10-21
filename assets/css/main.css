@@ -5,27 +5,24 @@
 }
 
 :root {
-  --background-color: #ffffff;
-  --default-color: #333333;
-  --heading-color: #2c2c2c;
-  --accent-color: #E63946;
-  --surface-color: #f8f9fa;
-  --contrast-color: #ffffff;
+  --background-color: #FFFFEC; 
+  --default-color: #597E52;    
+  --heading-color: #597E52;    
+  --accent-color: #C6A969;     
+  --surface-color: #F1E4C3;    
+  --contrast-color: #FFFFEC;   
 }
 
 :root {
-  --nav-color: #333333;
-  --nav-hover-color: #E63946;
-  --nav-mobile-background-color: #ffffff;
-  --nav-dropdown-background-color: #f1f1f1;
-  --nav-dropdown-color: #555555;
-  --nav-dropdown-hover-color: #E63946;
+  --nav-color: #597E52;   
+  --nav-hover-color: #C6A969;  
+  --nav-mobile-background-color: #FFFFEC; 
+  --nav-dropdown-background-color: #F1E4C3; 
+  --nav-dropdown-color: #597E52;   
+  --nav-dropdown-hover-color: #C6A969; 
 }
 
-.light-background {
-  --background-color: #f2f2f2;
-  --surface-color: #ffffff;
-}
+
 
 
 :root {
@@ -751,12 +748,12 @@ section,
 }
 
 .hero {
-  width: 100%;
-  min-height: 60vh;
-  position: relative;
-  padding: 60px 0;
+  background-image: url('assets/img/hero-img.png'); /* Replace with your actual image path */
+  background-size: cover; /* Ensures the image covers the section */
+  background-position: center; /* Centers the image */
+  height: 100vh; /* Adjust height as needed */
   display: flex;
-  align-items: center;
+  align-items: center; /* Centers content vertically */
 }
 
 .hero h1 {
@@ -844,10 +841,21 @@ section,
   }
 }
 
-.about h3 {
-  font-weight: 700;
-  font-size: 28px;
-  margin-bottom: 20px;
+.about.section {
+  padding: 60px 0; /* Adjust padding for spacing */
+}
+
+.about-section {
+  text-align: left; /* Aligns text to the left */
+}
+
+.about-section ul {
+  list-style: none; /* Remove bullets if needed */
+  padding: 0; /* Remove default padding */
+}
+
+.about-section li {
+  margin-bottom: 10px; /* Space out the list items */
 }
 
 .about .book-a-table {
@@ -1825,6 +1833,45 @@ section,
 .swiper-button-next {
   right: 10px; /* Adjust positioning */
 }
+
+.member-img {
+  display: flex; /* Align images in a row */
+}
+
+.chef-img {
+  flex: 1; /* Ensures both images share space equally */
+  height: 250px; /* Fixed height */
+  object-fit: cover; /* Maintain aspect ratio */
+  object-position: center; /* Center the image */
+}
+
+.certification-img img {
+  width: 100%;
+  height: 280px;
+  object-fit: cover;
+  object-position: bottom;
+}
+
+.certification-box img, .chef-img {
+  height: 250px; /* Ensures uniform height for both certifications and chef images */
+}
+
+.certification-box, .team-member {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.certification-info {
+  padding: 15px; /* Adds space between image and text */
+}
+
+.certification-box {
+  padding: 10px; /* Padding around the entire box */
+  border: 1px solid #ddd;
+  border-radius: 8px;
+}
+
 
 
 .fixed-size {
