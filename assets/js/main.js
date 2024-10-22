@@ -119,7 +119,23 @@
             prevEl: '.swiper-button-prev',
           },
           loop: true, // Enable looping through slides
-        });
+          slidesPerView: 3, // Show 3 slides at a time
+          spaceBetween: 30, // Space between the boxes
+          breakpoints: {
+            320: {
+              slidesPerView: 1,
+              spaceBetween: 10
+            },
+            640: {
+              slidesPerView: 2,
+              spaceBetween: 20
+            },
+            1024: {
+              slidesPerView: 3,
+              spaceBetween: 30
+            }
+          }
+        });        
       })
       .catch(error => console.error('Error loading dishes:', error));
   
@@ -136,18 +152,29 @@
         eventItems.forEach((item, index) => {
           item.addEventListener('click', () => {
             const event = events[index];
+            const eventTitle = document.getElementById('modal-event-title');
+            const eventDescription = document.getElementById('modal-event-description');
+            const eventPrice = document.getElementById('modal-event-price');
+          
+            if (eventTitle && eventDescription && eventPrice) {
+              eventTitle.innerText = event.title;
+              eventDescription.innerText = event.description;
+              eventPrice.innerText = event.price;
+            } else {
+              console.error('Modal elements not found in the DOM.');
+            }
             eventTitle.innerText = event.title;
             eventDescription.innerText = event.description;
             eventPrice.innerText = event.price;
-            eventDetailsSection.style.display = 'block'; // Show event details section
-            eventDetailsSection.scrollIntoView({ behavior: 'smooth' }); // Scroll to details section
+            eventDetailsSection.style.display = 'block'; 
+            eventDetailsSection.scrollIntoView({ behavior: 'smooth' });
           });
         });
       })
       .catch(error => console.error('Error loading event data:', error));
   });
+
   document.addEventListener('DOMContentLoaded', function () {
-    // Fetch JSON data
     fetch('assets/json/events.json')
         .then(response => response.json())
         .then(eventsData => {
@@ -188,49 +215,64 @@
         .catch(error => console.error('Error fetching events data:', error));
 });
 
-  
-  // Gallery Swiper
   document.addEventListener("DOMContentLoaded", function () {
-    const dishGallery = document.getElementById('dishGallery');
+  const dishGallery = document.getElementById('dishGallery');
+
+  // Fetch dishes JSON
+  fetch('assets/json/dishes.json')
+    .then(response => response.json())
+    .then(dishes => {
+      dishGallery.innerHTML = ''; // Clear existing content
   
-    fetch('assets/json/dishes.json')
-      .then(response => response.json())
-      .then(dishes => {
-        const middleIndex = Math.floor(dishes.length / 2);
-        dishGallery.innerHTML = ''; 
+      dishes.forEach((dish, index) => {
+        const slide = document.createElement('div');
+        slide.classList.add('swiper-slide');
+
+        const link = document.createElement('a');
+        link.classList.add('glightbox');
+        link.setAttribute('data-gallery', 'images-gallery');
+        link.href = dish.src;
+
+        const img = document.createElement('img');
+        img.src = dish.src;
+        img.alt = dish.alt;
+        img.style.width = "100%";  // Ensure image width is 100% of its container
+        img.style.height = "200px";  // Set fixed height for the images
+        img.style.objectFit = "cover";  // Maintain aspect ratio by cropping
+
+        link.appendChild(img);
+        slide.appendChild(link);
+        dishGallery.appendChild(slide);
+      });
   
-        dishes.forEach((dish, index) => {
-          const slide = document.createElement('div');
-          slide.classList.add('swiper-slide');
-          if (index === middleIndex) {
-            slide.classList.add('active-slide'); 
-          }
-  
-          const link = document.createElement('a');
-          link.classList.add('glightbox');
-          link.setAttribute('data-gallery', 'images-gallery');
-          link.href = dish.src;
-  
-          const img = document.createElement('img');
-          img.src = dish.src;
-          img.alt = dish.alt;
-          img.classList.add('img-fluid', 'fixed-size'); 
-  
-          link.appendChild(img);
-          slide.appendChild(link);
-          dishGallery.appendChild(slide);
-        });
-  
-        const swiper = new Swiper('.swiper-container', {
-          navigation: {
-            nextEl: '.swiper-button-next',
-            prevEl: '.swiper-button-prev',
+      // Initialize Swiper with specific settings for small images
+      const swiper = new Swiper('.swiper-container', {
+        navigation: {
+          nextEl: '.swiper-button-next',
+          prevEl: '.swiper-button-prev',
+        },
+        loop: true,
+        slidesPerView: 3,  // Display 3 slides at a time for smaller images
+        spaceBetween: 20,  // Add space between the images
+        breakpoints: {
+          320: {
+            slidesPerView: 1,
+            spaceBetween: 10
           },
-          loop: true, 
-        });
-      })
-      .catch(error => console.error('Error loading dishes:', error));
-  });
+          640: {
+            slidesPerView: 2,
+            spaceBetween: 20
+          },
+          1024: {
+            slidesPerView: 3,
+            spaceBetween: 30
+          }
+        }
+      });
+    })
+    .catch(error => console.error('Error loading dishes:', error));
+});
+
   
 
   let navmenulinks = document.querySelectorAll('.navmenu a');

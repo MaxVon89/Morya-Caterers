@@ -620,11 +620,18 @@ h1, h2, h3, h4, h5, h6 {
   }
 }
 
-.col-lg-7 img {
-  width: auto;
-  height: 620px; 
-  margin: 0 auto; 
+.col-lg-5 {
+  max-width: 100%; 
+  width: auto; 
 }
+
+.col-lg-5 img {
+  width: 100%;
+  height: auto;
+  object-fit: cover; 
+  margin: 0 auto;
+}
+
 
 .scroll-top {
   position: fixed;
@@ -748,13 +755,36 @@ section,
 }
 
 .hero {
-  background-image: url('assets/img/hero-img.png'); /* Replace with your actual image path */
-  background-size: cover; /* Ensures the image covers the section */
-  background-position: center; /* Centers the image */
-  height: 100vh; /* Adjust height as needed */
+  width: 100%;
+  height: 100vh;
+  background-size: cover; 
+  position: relative;
+  padding: 60px 0;
   display: flex;
-  align-items: center; /* Centers content vertically */
+  justify-content: center; /* Center the image horizontally */
+  align-items: center; /* Center the image vertically */
 }
+
+.hero-img img {
+  width: 80%; /* Increase the size of the image to 80% of the container's width */
+  max-width: 1000px; /* Ensure it doesn't exceed a reasonable maximum size */
+  height: auto; /* Maintain aspect ratio */
+  object-fit: cover; /* Ensures the image covers the area */
+  display: block; /* Remove any default inline spacing */
+  margin: 0 auto; /* Center the image horizontally */
+}
+
+.hero .container {
+  display: flex;  /* Enable flexbox to align items in a row */
+  align-items: center;  /* Vertically center items */
+  justify-content: space-between;  /* Space between the text and the image */
+}
+
+.hero .hero-text {
+  flex: 1;  /* Let the text column take up available space */
+  padding-right: 20px;  /* Add spacing between text and image */
+}
+
 
 .hero h1 {
   margin: 0;
@@ -842,21 +872,68 @@ section,
 }
 
 .about.section {
-  padding: 60px 0; /* Adjust padding for spacing */
+  padding: 60px 0; 
 }
 
-.about-section {
-  text-align: left; /* Aligns text to the left */
+.about .section-title {
+  text-align: middle;  /* Align the title to the left */
+  padding-left: 20px;  /* Move it slightly to the right */
+  margin-bottom: 10px;  /* Add a smaller margin */
+  position: relative;
 }
 
 .about-section ul {
-  list-style: none; /* Remove bullets if needed */
-  padding: 0; /* Remove default padding */
+  list-style: none; 
+  padding: 0; 
 }
 
 .about-section li {
-  margin-bottom: 10px; /* Space out the list items */
+  margin-bottom: 10px; 
 }
+
+.about .container {
+  display: flex;
+  flex-direction: row; 
+  align-items: center;  
+}
+
+.about .content p {
+  font-size: 30px;  /* Make the paragraph bigger */
+  line-height: 1.6;  /* Adjust line height for better readability */
+  margin-bottom: 20px;  /* Add more spacing between the paragraph and the next element */
+}
+
+.about .content ul li {
+  font-size: 20px; 
+}
+
+.about .col-lg-7 {
+  flex: 1;
+}
+
+.about .col-lg-5 {
+  flex: 1;
+}
+
+.about img {
+  width: 100%;
+  max-width: 500px;  /* Set a max width for the image */
+  height: auto;
+  display: block;
+  margin: 0 auto;
+}
+
+
+@media (max-width: 768px) {
+  .hero .container, .about .container {
+    flex-direction: column;  /* Stack content vertically on smaller screens */
+  }
+
+  .hero .hero-img, .about .col-lg-7, .about .col-lg-5 {
+    text-align: center;  /* Center the content */
+  }
+}
+
 
 .about .book-a-table {
   text-align: center;
@@ -1208,11 +1285,21 @@ section,
 
 .hero {
   width: 100%;
-  min-height: 60vh;
+  height: 100vh; /* Full viewport height */
+  background-position: center; /* Center the background image */
+  background-repeat: no-repeat; /* Avoid image repetition */
+  background-size: contain; /* Scale the image without stretching */
   position: relative;
   padding: 60px 0;
   display: flex;
+  justify-content: center;
   align-items: center;
+}
+
+.hero-img img {
+  max-width: 100%; /* Ensures image takes the full width available */
+  height: auto; /* Maintains the aspect ratio */
+  display: block; /* Removes extra spacing around the image */
 }
 
 .hero h1 {
@@ -1579,53 +1666,93 @@ section,
   color: var(--accent-color);
 }
 
-.testimonials .testimonials-carousel,
-.testimonials .testimonials-slider {
-  overflow: hidden;
-}
-
-.testimonials .testimonial-item .testimonial-content {
-  border-left: 3px solid var(--accent-color);
-  padding-left: 30px;
-}
-
-.testimonials .testimonial-item .testimonial-img {
-  border-radius: 50%;
-  border: 4px solid var(--background-color);
+.swiper-container {
+  position: relative;
+  width: 100%;
+  height: 600px; /* Adjust this as needed */
   margin: 0 auto;
 }
+.swiper-slide img {
+  width: 100%;
+  height: auto;
+}
 
-.testimonials .testimonial-item h3 {
+/* Arrows positioning */
+.swiper-button-next,
+.swiper-button-prev {
+  color: black;
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 10;
+}
+.swiper-button-next {
+  right: 10px; /* Adjust for alignment */
+}
+.swiper-button-prev {
+  left: 10px; /* Adjust for alignment */
+}
+
+
+.testimonial-item {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  height: 100%; 
+}
+
+.testimonial-content {
+  max-width: 700px; 
+  margin: 0 auto;
+  padding-left: 30px;
+  border-left: 3px solid var(--accent-color); 
+}
+
+.swiper-slide {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.testimonial-content p {
+  font-size: 1.1em; 
+  margin-bottom: 10px;
+}
+
+.testimonial-content h3 {
   font-size: 20px;
   font-weight: bold;
-  margin: 10px 0 5px 0;
+  margin: 15px 0 5px 0;
+  color: #000;
 }
 
-.testimonials .testimonial-item h4 {
+.testimonial-content h4 {
   font-size: 14px;
+  margin-top: 5px;
+  font-style: italic;
   color: color-mix(in srgb, var(--default-color), transparent 40%);
-  margin: 0 0 10px 0;
 }
 
-.testimonials .testimonial-item .stars i {
+.testimonial-item .stars i {
   color: #ffc107;
   margin: 0 1px;
 }
 
-.testimonials .testimonial-item .quote-icon-left,
-.testimonials .testimonial-item .quote-icon-right {
+.testimonial-item .quote-icon-left,
+.testimonial-item .quote-icon-right {
   color: color-mix(in srgb, var(--accent-color), transparent 50%);
   font-size: 26px;
   line-height: 0;
 }
 
-.testimonials .testimonial-item .quote-icon-left {
+.testimonial-item .quote-icon-left {
   display: inline-block;
   left: -5px;
   position: relative;
 }
 
-.testimonials .testimonial-item .quote-icon-right {
+.testimonial-item .quote-icon-right {
   display: inline-block;
   right: -5px;
   position: relative;
@@ -1633,28 +1760,10 @@ section,
   transform: scale(-1, -1);
 }
 
-.testimonials .testimonial-item p {
-  font-style: italic;
-}
-
-.testimonials .swiper-wrapper {
-  height: auto;
-}
-
-.testimonials .swiper-pagination {
-  margin-top: 30px;
-  position: relative;
-}
-
-.testimonials .swiper-pagination .swiper-pagination-bullet {
-  width: 12px;
-  height: 12px;
-  background-color: color-mix(in srgb, var(--default-color), transparent 85%);
-  opacity: 1;
-}
-
-.testimonials .swiper-pagination .swiper-pagination-bullet-active {
-  background-color: var(--accent-color);
+.testimonial-item .testimonial-img {
+  border-radius: 50%;
+  border: 4px solid var(--background-color);
+  margin: 0 auto;
 }
 
 .events .container-fluid {
@@ -1679,10 +1788,8 @@ section,
 
 .swiper-wrapper h3, 
 .swiper-wrapper .price {
-  color: #ffffff !important;
+  color: #000000;
 }
-
-
 
 .events .event-item:before {
   content: "";
@@ -1767,24 +1874,38 @@ section,
   box-shadow: 0px 0 50px rgba(0, 0, 0, 0.2);
 }
 
+.gallery-wrapper {
+  width: 100%;
+  padding: 20px 0;
+  display: flex;
+  justify-content: center;
+}
 
+/* Gallery container, ensuring a grid-like structure */
 .gallery {
-  overflow: hidden;
-  padding: 20px; 
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 20px;  /* Add space between the images */
 }
 
+/* Gallery image sizing */
 .gallery .gallery-img {
-  width: 200px; 
-  height: 200px; 
-  object-fit: cover;
-  margin: 10px; 
-  padding: 5px;
-  border: 2px solid var(--accent-color); 
-  border-radius: 10px; 
-  transition: transform 0.3s ease; 
+  width: 200px;  /* Set smaller width for images */
+  height: 200px;  /* Ensure images are squares */
+  object-fit: cover;  /* Maintain aspect ratio within the box */
+  margin: 10px;  /* Add margin between images */
+  border: 2px solid var(--accent-color);  /* Optional border */
+  border-radius: 10px;  /* Optional rounded corners */
+  transition: transform 0.3s ease;
 }
 
-/* The Modal (background) */
+/* Hover effect */
+.gallery .gallery-img:hover {
+  transform: scale(1.05);
+}
+
+
 .modal {
   display: none; 
   position: fixed; 
@@ -1883,6 +2004,64 @@ section,
 
 #dishGallery {
   margin-bottom: 50px; 
+}
+
+.testimonial-item {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  height: 100%; /* Ensures the item takes full height of its container */
+}
+
+.testimonial-content {
+  max-width: 700px; /* Adjust based on your layout preference */
+  margin: 0 auto;
+}
+
+.swiper-container {
+  width: 80%;  /* Adjust width to contain the gallery */
+  margin: 0 auto;  /* Center the gallery */
+}
+
+/* Adjust Swiper slide */
+.swiper-slide {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+/* Image styling inside swiper */
+.swiper-slide img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 10px;
+}
+
+/* Adjust Swiper navigation arrows */
+.swiper-button-prev, 
+.swiper-button-next {
+  color: rgb(0, 96, 249);
+  top: 50%;  /* Align arrows vertically */
+  transform: translateY(-50%);
+}
+
+.testimonial-content p {
+  font-size: 1.1em; /* Adjust font size */
+  margin-bottom: 10px; /* Spacing between text */
+}
+
+.testimonial-content h3 {
+  margin-top: 15px;
+  font-weight: bold;
+  color: #555;
+}
+
+.testimonial-content h4 {
+  margin-top: 5px;
+  font-style: italic;
+  color: #555; /* Lighter text color for the role */
 }
 
 

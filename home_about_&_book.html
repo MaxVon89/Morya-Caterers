@@ -22,7 +22,7 @@
   <link href="assets/vendor/aos/aos.css" rel="stylesheet">
   <link href="assets/vendor/glightbox/css/glightbox.min.css" rel="stylesheet">
   <link href="assets/vendor/swiper/swiper-bundle.min.css" rel="stylesheet">
-
+  <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css">
   <link href="assets/css/main.css" rel="stylesheet">
 </head>
 
@@ -52,24 +52,25 @@
   </header>
 
   <main class="main">
-
     <section id="hero" class="hero section light-background">
-
       <div class="container">
-        <div class="row gy-4 justify-content-center justify-content-lg-between">
+        <div class="row gy-4 align-items-center">
+          <div class="col-lg-7 order-lg-1 order-2 hero-text" data-aos="fade-up">
+            <h1>Welcome to Morya Caterers</h1>
+            <p>Providing high-quality catering services for all occasions with a focus on delicious food and customer satisfaction. Whether it's a wedding, corporate event, or private party, we make every event special with our culinary expertise and impeccable service.</p>
           </div>
-          <div class="col-lg-5 order-1 order-lg-2 hero-img" data-aos="zoom-out">
-            <img src="assets\img\hero-img.jpg" class="img-fluid animated" alt="">
+    
+          <div class="col-lg-5 order-lg-2 order-1 hero-img" data-aos="zoom-out">
+            <img src="assets/img/hero-img.jpg" class="img-fluid animated" alt="Hero Image">
           </div>
         </div>
       </div>
-
     </section>
+    
 
     <section id="about" class="about section">
-      <div class="container section-title" data-aos="fade-up">
-          <h2>About Us<br></h2>
-          <p><span>Learn More</span> <span class="description-title">About Us</span></p>
+      <div class="section-title">
+        <p><span>Learn More</span> <span class="description-title">About Us</span></p>
       </div>
   
       <div class="container">
@@ -104,7 +105,7 @@
 
           <div class="col-lg-3 col-md-6">
             <div class="stats-item text-center w-100 h-100">
-              <span data-purecounter-start="0" data-purecounter-end="2000" data-purecounter-duration="1" class="purecounter"></span>
+              <span data-purecounter-start="0" data-purecounter-end="5000" data-purecounter-duration="1" class="purecounter"></span>
               <p>Clients</p>
             </div>
           </div>
@@ -112,14 +113,14 @@
           <div class="col-lg-3 col-md-6">
             <div class="stats-item text-center w-100 h-100">
               <span data-purecounter-start="0" data-purecounter-end="521" data-purecounter-duration="1" class="purecounter"></span>
-              <p>Dishes Served</p>
+              <p>Types of Dishes Served</p>
             </div>
           </div>
 
           <div class="col-lg-3 col-md-6">
             <div class="stats-item text-center w-100 h-100">
               <span data-purecounter-start="0" data-purecounter-end="1453" data-purecounter-duration="1" class="purecounter"></span>
-              <p>Hours Of Support</p>
+              <p>Events Catered to</p>
             </div>
           </div>
 
@@ -135,6 +136,98 @@
       </div>
 
     </section>
+
+    <section id="testimonials" class="testimonials section light-background">
+
+      <div class="container section-title" data-aos="fade-up">
+        <h2>TESTIMONIALS</h2>
+        <p>What Are They <span class="description-title">Saying About Us</span></p>
+      </div>
+    
+      <div class="container" data-aos="fade-up" data-aos-delay="100">
+    
+        <div class="swiper init-swiper">
+          <script type="application/json" class="swiper-config">
+            {
+              "loop": true,
+              "speed": 600,
+              "autoplay": {
+                "delay": 5000
+              },
+              "slidesPerView": "auto",
+              "pagination": {
+                "el": ".swiper-pagination",
+                "type": "bullets",
+                "clickable": true
+              }
+            }
+          </script>
+          <div class="swiper-wrapper">
+    
+            <div class="swiper-slide">
+              <div class="testimonial-item">
+                <div class="testimonial-content">
+                  <p>
+                    <i class="bi bi-quote quote-icon-left"></i>
+                    "The food here is simply amazing! The flavors are rich, and everything is cooked to perfection."
+                    <i class="bi bi-quote quote-icon-right"></i>
+                  </p>
+                  <h3>Makrand Velankar</h3>
+                  <h4>Ceo &amp; Founder of Velankar institutes</h4>
+                </div>
+              </div>
+            </div>
+    
+            <div class="swiper-slide">
+              <div class="testimonial-item">
+                <div class="testimonial-content">
+                  <p>
+                    <i class="bi bi-quote quote-icon-left"></i>
+                    "I’ve never tasted such fresh and delicious food. The quality is top-notch!"
+                    <i class="bi bi-quote quote-icon-right"></i>
+                  </p>
+                  <h3>Kartik Rathode</h3>
+                  <h4>Owner & Founder of Rathode Jewelers</h4>
+                </div>
+              </div>
+            </div>
+    
+            <div class="swiper-slide">
+              <div class="testimonial-item">
+                <div class="testimonial-content">
+                  <p>
+                    <i class="bi bi-quote quote-icon-left"></i>
+                    "Every dish is a masterpiece. Perfect blend of spices and textures!"
+                    <i class="bi bi-quote quote-icon-right"></i>
+                  </p>
+                  <h3>Pallavi Kakade</h3>
+                  <h4>Small Scale Business Founder</h4>
+                </div>
+              </div>
+            </div>
+    
+            <div class="swiper-slide">
+              <div class="testimonial-item">
+                <div class="testimonial-content">
+                  <p>
+                    <i class="bi bi-quote quote-icon-left"></i>
+                    "Amazing service and even better food. You can taste the care in every bite!"
+                    <i class="bi bi-quote quote-icon-right"></i>
+                  </p>
+                  <h3>Swati Joshi</h3>
+                  <h4>Independent Business women</h4>
+                </div>
+              </div>
+            </div>
+    
+          </div>
+          <div class="swiper-pagination"></div>
+        </div>
+    
+      </div>
+    
+    </section>
+    
 
 
     <section id="contact" class="contact section">
@@ -259,7 +352,7 @@
           <div class="social-links d-flex">
             <a href="#" class="twitter" target="_blank"><i class="bi bi-twitter-x"></i></a>
             <a href="https://www.facebook.com/share/55skdCgr1pmPFAhL/" class="facebook" target="_blank"><i class="bi bi-facebook"></i></a>
-            <a href="#" class="instagram" target="_blank"><i class="bi bi-instagram"></i></a>
+            <a href="https://www.instagram.com/moryacaterers_by_madhuri/" class="instagram" target="_blank"><i class="bi bi-instagram"></i></a>
           </div>
         </div>
 
@@ -281,6 +374,7 @@
   <script src="assets/vendor/glightbox/js/glightbox.min.js"></script>
   <script src="assets/vendor/purecounter/purecounter_vanilla.js"></script>
   <script src="assets/vendor/swiper/swiper-bundle.min.js"></script>
+  <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
 
   <script src="assets/js/main.js"></script>
 
